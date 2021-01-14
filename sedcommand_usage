@@ -64,3 +64,18 @@ unix is easy to learn.unix is a multiuser os.Learn unix .unix is a powerful.
 
 The above sed command replaces the string only on the third line. 
 
+Deleting lines from a particular file : SED command can also be used for deleting lines from a particular file. SED command is used for performing deletion operation without even opening the file
+Examples:
+1. To Delete a particular line say n in this example
+
+Syntax:
+$ sed 'nd' filename.txt
+Example:
+$ sed '5d' filename.txt
+
+2. To Delete a last line
+
+Syntax:
+$ sed '$d' filename.txt
+
+
