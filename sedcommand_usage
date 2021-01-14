@@ -78,4 +78,10 @@ $ sed '5d' filename.txt
 Syntax:
 $ sed '$d' filename.txt
 
+Delete the pattern matching line –
+Syntax: sed ‘/pattern/d’ filename
+
+Example :
+
+[root@rhel7 ~]# sed '/life/d' a.txt
 
