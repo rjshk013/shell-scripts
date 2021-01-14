@@ -186,3 +186,12 @@ square of 6 is 36
 Diskusage :
 -----------
 df -H | grep -vE '^Filesystem|tmpfs|udev|/dev/sr0' | awk '{ print $5 " " $1 }'
+
+
+if you know the parition already just grep that & print the usage with awk
+
+df -h | grep '/dev/sda1' | awk {'print $5'}
+
+output
+
+47%
