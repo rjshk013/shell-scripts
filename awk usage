@@ -1,0 +1,128 @@
+awk commands usage:
+--------------------
+
+
+    $0 for the whole line.
+    $1 for the first field.
+    $2 for the second field.
+    $n for the nth field.
+
+1.to print the last fields from a file
+
+awk '{print $NF}' filename
+
+2.to print the last line contents from a file 
+
+ awk '{line = $0} END {print line}' filename
+
+3.To display all lines with line numbers
+
+
+awk '{print NR,$0}' filename
+
+4.To print first field & last field contents only
+
+awk '{print $1,$NF}' filename
+
+5.To display line from 3 to 6 (with line number)
+
+awk 'NR==3, NR==6 {print NR,$0}' filename
+
+6.without specifying line number
+
+awk 'NR==3, NR==6 {print $0}' filename
+
+7.To return the second row/item from
+
+awk '{print $2}' filename
+
+8.To count the lines in a file:
+
+awk 'END { print NR }' filename
+
+Write A Command To Find The Total Number Of Lines In A File Without Using Nr?
+
+awk 'BEGIN {sum=0} {sum=sum+1} END {print sum}' filename
+
+
+To print the users from the password file:
+
+awk -F: '{print $1}' /etc/passwd
+
+
+Reading The Script From a File
+
+You can type your awk script in a file and specify that file using the -f option.
+
+awk -F: -f testfile /etc/passwd
+
+
+By default, the OFS variable is the space, you can set the OFS variable to specify the separator you need:
+
+ awk 'BEGIN{FS=":"; OFS="-"} {print $1,$6,$7}' /etc/passwd
+
+The NF variable specifies the last field in the record without knowing its position:
+
+$ awk 'BEGIN{FS=":"; OFS=":"} {print $1,$NF}' /etc/passwd
+
+Syntax of awk :
+
+# awk ‘pattern {action}’ input-file > output-file
+
+By default, AWK prints all the lines that match pattern.
+
+awk '/a/ {print $0}' filename
+
+awk '/a/' filename  : both will give the same result
+
+Printing Columns by Pattern
+
+awk '/a/ {print $3 "\t" $4}' filename
+
+to get login user printed form:
+who | awk '{print $1}'
+
+To get date :
+date | awk '{print $2,$3,$6}'
+
+to print date with a seperator /:
+
+date | awk 'OFS="/" {print$2,$3,$6}'
+
+to print date with seperator -:
+date | awk 'OFS="-" {print$2,$3,$6}'
+
+use BEGIN to print with a heading before the test process:
+who | awk 'BEGIN {print "Active Sessions"} {print $1,$4}' 
+
+
+to print the name of the user account and the home folder:
+
+awk -F: '{print $1,$6}' /etc/passwd
+
+ execute our print action only when the third field ($3) contains a value of 1,000 or greater:
+
+awk -F: '$3 >= 1000 {print $1,$6}' /etc/passwd
+
+using the (\n) notation to insert a newline character into the title string:
+
+awk -F: 'BEGIN {print "User Accounts\n-------------"} $3 >= 1000 {print $1,$6}' /etc/passwd
+
+
+awk to change the delimiter
+---------------------------
+awk command can be used to change the delimiter for any file content. Suppose, you have a text file named phone.txt with the following content where ‘:’ is used as field separator of the file content.
+
++123:334:889:778
++880:1855:456:907
+
+awk command to change the delimiter, ‘:’ by ‘-’ to the content of the file, phone.txt.
+
+ awk '$1=$1' FS=":" OFS="-" phone.txt
+
+
+reference : https://linuxhint.com/20_awk_examples/
+
+
+
+
