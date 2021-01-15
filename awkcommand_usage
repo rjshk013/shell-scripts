@@ -195,3 +195,7 @@ df -h | grep '/dev/sda1' | awk {'print $5'}
 output
 
 47%
+
+
+Prnt last line of a file :
+awk '{line = $0} END {print line}' filename
