@@ -23,7 +23,7 @@ sudo systemctl start auditd
 sudo systemctl enable auditd
 #add rules for audit 
 auditctl -w /var/log/lastlog -p wa -k logins
-auditctl- w /var/run/faillock/ -p wa -k logins
+auditctl -w /var/run/faillock/ -p wa -k logins
 auditctl -w /etc/passwd -p wa -k password-file
 auditctl -w /etc/gshadow -p wa -k shadow-file
 auditctl -w /var/log/lastlog -p wa -k lastlog-file
