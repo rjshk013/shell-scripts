@@ -15,6 +15,7 @@ sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
 sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=1
 #Ensure local login warning banner is configured properly
 echo "Authorized uses only. All activity may be monitored and reported." > /etc/issue
+Ensure Loglevel is set to INFO
 grep "^LogLevel" /etc/ssh/sshd_config
 #Install auditd on ubuntu
 sudo apt-get install auditd -y
