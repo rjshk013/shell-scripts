@@ -1,5 +1,10 @@
 #!/bin/bash
 #ensure you are logged in as root user
+if [ "$(whoami)" != "root" ]
+then
+    sudo su -s "$0"
+    exit
+fi
 #Ensure secure ICMP redirects are not accepted
 sysctl -w net.ipv4.conf.all.secure_redirects=0 
 sysctl -w net.ipv4.conf.default.secure_redirects=0 
