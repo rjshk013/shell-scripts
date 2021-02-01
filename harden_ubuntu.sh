@@ -9,8 +9,8 @@ fi
 sysctl -w net.ipv4.conf.all.secure_redirects=0 
 sysctl -w net.ipv4.conf.default.secure_redirects=0 
 sysctl -w net.ipv4.route.flush=1
-#Ensure password expiration is 90 days or less
-sudo chage -M 90 $USER
+#Ensure password expiration is 90 days or less,change username accordingly
+sudo chage -M 90 ubuntu
 #Ensure IP forwarding is disabled
 sysctl -w net.ipv4.ip_forward=0
 sysctl -w net.ipv4.route.flush=1
@@ -20,7 +20,7 @@ sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
 sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=1
 #Ensure local login warning banner is configured properly
 echo "Authorized uses only. All activity may be monitored and reported." > /etc/issue
-Ensure Loglevel is set to INFO
+#Ensure Loglevel is set to INFO
 grep "^LogLevel" /etc/ssh/sshd_config
 #Install auditd on ubuntu
 sudo apt-get install auditd -y
