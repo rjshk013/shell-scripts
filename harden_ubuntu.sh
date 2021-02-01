@@ -1,6 +1,6 @@
 #!/bin/bash
+#ensure you are logged in as root user
 #Ensure secure ICMP redirects are not accepted
-sudo su
 sysctl -w net.ipv4.conf.all.secure_redirects=0 
 sysctl -w net.ipv4.conf.default.secure_redirects=0 
 sysctl -w net.ipv4.route.flush=1
