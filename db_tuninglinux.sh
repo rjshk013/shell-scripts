@@ -7,14 +7,15 @@ sysctl -w vm.swappiness=1
 echo “vm.swappiness=1” >> /etc/sysctl.conf
 # Set the swappiness value as root
 echo 1 > /proc/sys/vm/swappiness
-
 # Alternatively, using sysctl
 sysctl -w vm.swappiness=1
-
 # Verify the change
 cat /proc/sys/vm/swappiness
 1
-
 # Alternatively, using sysctl
 sysctl vm.swappiness
 vm.swappiness = 1
+# View the I/O scheduler setting. The value in square brackets shows the running scheduler
+cat /sys/block/sda/queue/scheduler 
+# Change the setting
+sudo echo noop > /sys/block/sda/queue/scheduler
