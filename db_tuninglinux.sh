@@ -19,3 +19,6 @@ vm.swappiness = 1
 cat /sys/block/sda/queue/scheduler 
 # Change the setting
 sudo echo noop > /sys/block/sda/queue/scheduler
+#permanent
+sed 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash elevator=deadline"/' /etc/default/grub
+update-grub2
