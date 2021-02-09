@@ -22,3 +22,15 @@ sudo echo noop > /sys/block/sda/queue/scheduler
 #permanent
 sed 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash elevator=deadline"/' /etc/default/grub
 update-grub2
+#Maximum percentage of active memory that can be dirty pages
+sysctl -w vm.dirty_background_ratio=3
+echo “vm.dirty_background_ratio=3” >> /etc/sysctl.conf
+#Maximum percentage of total memory that can have dirty pages
+sysctl -w vm.dirty_ratio=40
+echo “vm.dirty_ratio=40” >> /etc/sysctl.conf
+#How long to keep data in page cache before expiring
+sysctl -w vm.dirty_expire_centisecs=500
+echo “vm.dirty_expire_centisecs=500” >> /etc/sysctl.conf
+#How often pdflush activates to clean dirty pages in hundredths of a seconds
+sysctl -w vm.dirty_writeback_centisecs=100
+echo “vm.dirty_writeback_centisecs=100” >> /etc/sysctl.conf
