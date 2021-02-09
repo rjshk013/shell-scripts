@@ -34,3 +34,6 @@ echo “vm.dirty_expire_centisecs=500” >> /etc/sysctl.conf
 #How often pdflush activates to clean dirty pages in hundredths of a seconds
 sysctl -w vm.dirty_writeback_centisecs=100
 echo “vm.dirty_writeback_centisecs=100” >> /etc/sysctl.conf
+#increase open file limit to 500000
+sysctl -w fs.file-max=500000
+echo “fs.file-max=500000” >> /etc/sysctl.conf
