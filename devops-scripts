@@ -441,3 +441,29 @@ sudo cat
     ```sh
      rpm -qa | grep openjdk | xargs  yum -y remove
     ```
+
+Delete Files older Than 30 Days
+
+You can use the find command to search all files modified older than X days. And also delete them if required in single command.
+
+First of all, list all files older than 30 days under /opt/backup directory.
+
+find /opt/backup -type f -mtime +30 
+
+Check the list of files shown in the above command. If all okay, execute below command to delete those files
+
+find /opt/backup -type f -mtime +30 -exec rm -f {} \; 
+
+2. Delete Files with Specific Extension
+
+Instead of deleting all files, you can also add more filters to find command. For example, you only need to delete files with “.log” extension and modified before 30 days.
+
+For the safe side, first do a dry run and list files matching the criteria.
+
+find /var/log -name "*.log" -type f -mtime +30 
+
+Once the list is verified, delete those file by running the following command:
+
+find /var/log -name "*.log" -type f -mtime +30 -exec rm -f {} \; 
+
+Above command will delete only files having .log extension and last modification date is older than 30 days.
