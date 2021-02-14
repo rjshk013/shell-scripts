@@ -1,0 +1,5 @@
+The first example shows how to find out all the .png images and archive them using the tar utility as follows.
+
+Here, the action command -print0 enables printing of the full file path on the standard output, followed by a null character and -0 xargs flag effectively deals with space in filenames.
+
+find ~/Pictures -name "*.png" -type f -print0 | xargs -0 tar -cvzf images.tar.gz
