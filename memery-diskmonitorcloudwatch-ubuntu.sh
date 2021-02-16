@@ -7,3 +7,9 @@ unzip CloudWatchMonitoringScripts-1.2.2.zip
 rm CloudWatchMonitoringScripts-1.2.2.zip
 cd aws-scripts-mon
 sudo mv awscreds.template awscreds.conf
+sed 's/AWSAccessKeyId=/AWSAccessKeyId=secrteid/' awscreds.conf
+sed 's/AWSSecretKey=/AWSSecretKey=secrtekey/' awscreds.conf
+./mon-put-instance-data.pl --mem-util --verify --verbose
+./mon-put-instance-data.pl --mem-util --disk-space-util --disk-path=/
+#add the script to crontab
+*/5 * * * * ~/aws-scripts-mon/mon-put-instance-data.pl --mem-util --disk-space-util --disk-path=/ --from-cron
