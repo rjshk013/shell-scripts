@@ -28,12 +28,16 @@ limit_req_zone $binary_remote_addr zone=req_limit_per_ip:10m rate=5r/s;
 server {
         listen 80 default_server;
         listen [::]:80 default_server;
-
         if ($request_method !~ ^(GET|HEAD|POST)$) {
    return 444;
 }
 limit_conn conn_limit_per_ip 10;
     limit_req zone=req_limit_per_ip burst=10 nodelay;
+    add_header Content-Security-Policy "frame-ancestors 'none';";
+    add_header Strict-Transport-Security "max-age=31536000; includeSubdomains; preload";
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-Content-Type-Options nosniff;
+    add_header X-XSS-Protection "1; mode=block";
 
         # SSL configuration
         #
@@ -56,7 +60,10 @@ limit_conn conn_limit_per_ip 10;
         # Add index.php to the list if you are using PHP
         index index.html index.htm index.nginx-debian.html;
 
-        server_name _;
+        server_name mjyio.ml www.mjyio.ml;
+#        return 301 https://$host$request_uri;
+
+
 
         location / {
                 # First attempt to serve request as file, then
@@ -66,6 +73,7 @@ limit_conn conn_limit_per_ip 10;
         location ~* .(jpg|jpeg|png|gif|ico|css|js)$ {
 expires 365d;
 }
+
         # pass PHP scripts to FastCGI server
         #
         #location ~ \.php$ {
@@ -104,3 +112,4 @@ expires 365d;
 #               try_files $uri $uri/ =404;
 #       }
 #}
+
